@@ -1,40 +1,63 @@
 import React from 'react';
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import './App.css';
 
-const actions = {
-  init(initialValue) {
-    return { value: initialValue };
-  },
-  increment(prevState) {
-    return { value: prevState.value + 1 };
-  },
-  decrement(prevState) {
-    return { value: prevState.value - 1 };
-  },
-};
+class PostDetail extends React.Component {
+  state = {
+    postDetail: null,
+  };
 
-class Counter1 extends React.Component {
-  state = actions.init(this.props.initialValue);
+  componentDidMount() {
+    const { postId } = this.props;
+    this.requestPost(postId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { postId } = this.props;
+    if (postId !== prevProps.postId) {
+      this.requestPost(postId);
+    }
+  }
+
+  requestPost(postId) {
+    console.log(`request post #${postId}`);
+    this.setState({ postDetail: null });
+    setTimeout(() => {
+      this.setState({ postDetail: `로딩된 post #${postId}` });
+    }, 3000);
+  }
 
   render() {
-    const { value } = this.state;
+    const { postId } = this.props;
+    const { postDetail } = this.state;
     return (
       <div>
-        Counter1: {value}
-        <Button onClick={() => this.setState(actions.increment)}>+1</Button>
-        <Button onClick={() => this.setState(actions.decrement)}>-1</Button>
+        포스팅 #{postId}
+        <hr />
+        {!postDetail && '로딩중 ...'}
+        {postDetail}
       </div>
     );
   }
 }
 
-function App() {
-  return (
-    <div>
-      <Counter1 initialValue={10}></Counter1>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    postId: 10,
+  };
+
+  render() {
+    return (
+      <div>
+        <PostDetail postId={this.state.postId}></PostDetail>
+        <button
+          onClick={() => this.setState({ postId: this.state.postId + 10 })}
+        >
+          postId 변경
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
