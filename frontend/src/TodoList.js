@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Input } from 'antd';
+import { produce } from 'immer';
 
 class TodoList extends React.Component {
   state = {
@@ -17,10 +18,15 @@ class TodoList extends React.Component {
   onKeyDown = (e) => {
     // Enter key
     if (e.keyCode === 13) {
-      const { todoList, current } = this.state;
-      if (current.trim().length > 0) {
-        this.setState({ current: '', todoList: [...todoList, current.trim()] });
-      }
+      this.setState(
+        produce((draft) => {
+          const current = draft.current.trim();
+          if (current.length > 0) {
+            draft.todoList.push(current);
+            draft.current = '';
+          }
+        }),
+      );
     }
   };
 
