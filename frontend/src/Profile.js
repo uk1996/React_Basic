@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Profile.module.scss';
 
-class Message extends React.Component {
+class Profile extends React.Component {
   render() {
-    return <div className={styles.wrapper}>Message Component</div>;
+    return <div className={styles.wrapper}>Profile Component</div>;
   }
 }
 
-export default Message;
+export default Profile;
