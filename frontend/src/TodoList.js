@@ -1,8 +1,6 @@
 import React from 'react';
 import { List, Input } from 'antd';
 
-const TodoItem = ({ todo }) => <li>{todo}</li>;
-
 class TodoList extends React.Component {
   state = {
     todoList: ['python', 'React', 'Djnago'],
@@ -18,7 +16,7 @@ class TodoList extends React.Component {
 
   onKeyDown = (e) => {
     // Enter key
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       const { todoList, current } = this.state;
       if (current.trim().length > 0) {
         this.setState({ current: '', todoList: [...todoList, current.trim()] });
