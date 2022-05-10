@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 
 const SET_NAME = 'SET_NAME';
 const SET_AGE = 'SET_AGE';
