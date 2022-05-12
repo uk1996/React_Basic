@@ -9,7 +9,8 @@ const App = () => (
 );
 
 const Level2Wrapper = () => {
-  const message = useContext(MessageContext);
+  const message = useContext(MessageContext); // getter
+  
   return (
     <div>
       <Level2 message={message} />
