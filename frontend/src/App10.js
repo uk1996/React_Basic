@@ -11,12 +11,12 @@ const App = () => {
 
         <ul>
           <li>
-            <NavLink exact to="/about/" activeStyle={navActiveStyle}>
+            <NavLink to="/about/" activeStyle={navActiveStyle}>
               about
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/about/company/" activeStyle={navActiveStyle}>
+            <NavLink to="/about/company/" activeStyle={navActiveStyle}>
               about company
             </NavLink>
           </li>
